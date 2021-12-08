@@ -13,7 +13,7 @@ node index.js -d <date in DDMMYY format e.g. 071221> -t <time in 24-hr format e.
 
 npm start -- -d <date in DDMMYY format e.g. 071221> -t <time in 24-hr format e.g. 2030> -l <location: cecil / orchard / tanjong> -b <bike numbers with higher priority first, separate each bike number with a space>
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;Example: 
+&nbsp;&nbsp;&nbsp;&nbsp;Example with 3 bike numbers (use one of the following): 
 ```
 npm start -- -d 101221 -t 0800 -l cecil -b 19 18 17
 node index.js -d 101221 -t 0800 -l cecil -b 19 18 17
