@@ -1,4 +1,4 @@
-// The following program is used to scrape names and addresses of food and beverage outlets in Ion Orchard from http://www.ionorchard.com/shop/listings
+// The following program is used to helps users to secure their Revolution spin class spots with their favourite bikes. If the booking is available, it will be made immediately, otherwise it will be scheduled at the exact time in the future when it will be available.
 // Language used: Javascript
 // Libraries used: Puppeteer, Line Reader, Commander, Node Schedule
 
