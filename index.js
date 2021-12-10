@@ -18,31 +18,38 @@ async function initBrowser(browser) {
 }
 
 async function userLogin(page) {
-    var email = "";
-    var password = "";
-    console.log("Obtaining user credentials...");
-    lineReader.eachLine('credentials.txt', function (line) {
-        var input = line.split(":").map(function (item) {
-            return item.trim();
+    try {
+        var email = "";
+        var password = "";
+        console.log("Obtaining user credentials...");
+        lineReader.eachLine('credentials.txt', function (line) {
+            var input = line.split(":").map(function (item) {
+                return item.trim();
+            })
+            if (input[0] == "email") {
+                email = input[1];
+            } else if (input[0] == "password") {
+                password = input[1];
+            }
         })
-        if (input[0] == "email") {
-            email = input[1];
-        } else if (input[0] == "password") {
-            password = input[1];
-        }
-    })
 
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log("Entering user credentials...");
-    // difficulty with Revolution's webpage is the use of iframes throughout the entire class booking pages
-    var frameHandle = await page.waitForSelector('#zingfit-embed > iframe');
-    var frame = await frameHandle.contentFrame();
-    await frame.waitForSelector('#username');
-    await frame.type('#username', email);
-    await frame.waitForSelector('#password');
-    await frame.type('#password', password);
-    await page.waitForTimeout(1000);
-    page.keyboard.press('Enter');
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        console.log("Entering user credentials...");
+        if (email == "" || password == "") {
+            throw "ERROR: No credentials provided. Please check that you have updated credentials.txt with your email and password!"
+        }
+        // difficulty with Revolution's webpage is the use of iframes throughout the entire class booking pages
+        var frameHandle = await page.waitForSelector('#zingfit-embed > iframe');
+        var frame = await frameHandle.contentFrame();
+        await frame.waitForSelector('#username');
+        await frame.type('#username', email);
+        await frame.waitForSelector('#password');
+        await frame.type('#password', password);
+        await page.waitForTimeout(1000);
+        page.keyboard.press('Enter');
+    } catch (err) {
+        throw err;
+    }
 }
 
 async function reserveClass(page, options, diffDays) {
@@ -113,8 +120,8 @@ async function reserveClass(page, options, diffDays) {
         var foundClass = false;
         var instrName = "";
         for (let i = 0; i < allClassesInDay.length; i++) {
-            instrName = await allClassesInDay[i].$eval("span.scheduleInstruc.active", n => n.innerText);
-            const classTime = await allClassesInDay[i].$eval("span.scheduleTime.active", ct => (ct.innerText).split('\n')[0]);
+            instrName = await allClassesInDay[i].$eval("span.scheduleInstruc", n => n.innerText);
+            const classTime = await allClassesInDay[i].$eval("span.scheduleTime", ct => (ct.innerText).split('\n')[0]);
             if (classTime == desiredTime) {
                 foundClass = true;
                 console.log("Selected class by " + instrName + " at " + classTime);
