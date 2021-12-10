@@ -6,16 +6,13 @@ RevoSniper is a bot that helps users to secure their Revolution spin class spots
 
 1. Download and install the LTS version of Node.js from the following link: https://nodejs.org/en/
 
-2. Download / clone this repository<br />
-<img src="images/download.png" alt="drawing" height="150"/>
+2. Download / clone this repository<br /><img src="images/download.png" alt="drawing" height="200"/>
 
 3. Open a file explorer and navigate to the cloned repository and edit the text file with your email and password. This is for RevoSniper to login to the Revolution application, rest assured no data is stored by the bot and all your credentials are stored solely on your computer!
-&nbsp;&nbsp;&nbsp;&nbsp;Your credentials.txt file should look like this after you edit it:<br />
-<img src="images/credentials.png" alt="drawing" height="200"/>
+&nbsp;&nbsp;&nbsp;&nbsp;Your credentials.txt file should look like this after you edit it:<br /><img src="images/credentials.png" alt="drawing" height="200"/>
 
 4. Open a Terminal and navigate to the cloned repository
-&nbsp;&nbsp;&nbsp;&nbsp;For example, if you are using Windows, you can right-click the address bar in File Explorer and select "Copy address as text". If you are using MacOS, click on "View" then "Show Path Bar" in Finder while in the RevoSniper folder, followed by right-clicking the last folder in the Path Bar (RevoSniper-main) and selecting "Copy "RevoSniper-main" as Pathname". <br /><img src="images/pathname.png" alt="drawing" height="150"/><br />In the Terminal, type "cd" and press space, then paste the address you just copied and hit enter. This allows the Terminal to find our program.<br />
-<img src="images/terminal.png" alt="drawing" height="200"/><br />
+&nbsp;&nbsp;&nbsp;&nbsp;For example, if you are using Windows, you can right-click the address bar in File Explorer and select "Copy address as text". If you are using MacOS, click on "View" then "Show Path Bar" in Finder while in the RevoSniper folder, followed by right-clicking the last folder in the Path Bar (RevoSniper-main) and selecting "Copy "RevoSniper-main" as Pathname". <br /><img src="images/pathname.png" alt="drawing" height="300"/><br />In the Terminal, type "cd" and press space, then paste the address you just copied and hit enter. This allows the Terminal to find our program.<br /><img src="images/terminal.png" alt="drawing" height="300"/><br />
 
 5. Run RevoSniper using one of the following commands, replacing the fields including the <> brackets with the actual details of the class you desire. You may specify as many bikes as you want, each separated by a space
 ```
