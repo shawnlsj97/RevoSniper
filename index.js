@@ -36,7 +36,7 @@ async function userLogin(page) {
         await new Promise(resolve => setTimeout(resolve, 1000));
         console.log("Entering user credentials...");
         if (email == "" || password == "") {
-            throw "ERROR: No credentials provided. Please check that you have updated credentials.txt with your email and password!"
+            throw "ERROR: Error in credentials provided. Please check that you have updated credentials.txt with your correct email and password!"
         }
         // difficulty with Revolution's webpage is the use of iframes throughout the entire class booking pages
         var frameHandle = await page.waitForSelector('#zingfit-embed > iframe');
