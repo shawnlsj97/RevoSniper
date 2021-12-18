@@ -12,12 +12,12 @@ RevoSniper is a bot that helps users to secure their Revolution spin class spots
 Your credentials.txt file should look like this after you edit it:
 <img src="images/credentials.png" alt="drawing" height="200"/>
 
-4. Open a Terminal and navigate to the cloned repository
+4. Open a Terminal and navigate to the repository<br />
 For example, if you are using Windows, you can right-click the address bar in File Explorer and select "Copy address as text".
 If you are using MacOS, click on "View" then "Show Path Bar" in Finder while in the RevoSniper folder, followed by right-clicking the last folder in the Path Bar (RevoSniper-main) and selecting "Copy "RevoSniper-main" as Pathname".<br /><img src="images/pathname.png" alt="drawing" height="300"/><br />In the Terminal, type "cd" and press space, then paste the address you just copied and hit enter. This allows the Terminal to find our program.
 <img src="images/terminal.png" alt="drawing" height="300"/>
 
-5. Enter `npm install` and hit enter. This installs all the necessary packages needed by RevoSniper.
+5. In the same Terminal, enter `npm install` and hit enter. This installs all the necessary packages needed by RevoSniper.
 
 6. Run RevoSniper using one of the following commands, replacing the fields including the <> brackets with the actual details of the class you desire. You may specify as many bikes as you want, each separated by a space
 ```

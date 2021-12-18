@@ -63,7 +63,7 @@ async function reserveClass(page, options, diffDays) {
         const element = await frame.$("ul > li:nth-child(2) > a");
         await frame.evaluate(el => el.click(), element);
         await page.waitForNavigation({ waitUntil: 'networkidle2' });
-        if (diffDays == 7) { // navigate to next week
+        if (diffDays >= 7) { // navigate to next week
             frameHandle = await page.waitForSelector('#zingfit-embed > iframe');
             frame = await frameHandle.contentFrame();
             const element = await frame.$("#reserveweeknav > li.next > a");
@@ -98,7 +98,7 @@ async function reserveClass(page, options, diffDays) {
                 throw "ERROR: Invalid location provided. Make sure location is cecil / orchard / tanjong!"
         }
         // use date to select column
-        // find column
+        // determine column
         console.log("Selecting class...");
         frameHandle = await page.waitForSelector('#zingfit-embed > iframe');
         frame = await frameHandle.contentFrame();
