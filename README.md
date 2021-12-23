@@ -35,7 +35,9 @@ node index.js -d 101221 -t 0800 -l cecil -b 19 18 17
 
 8. If you wish to terminate RevoSniper or caffeinate at any point, press `ctrl + c`
 
-9. Feel free to connect with me on Twitter (@shawnlsj) or Instagram (@shawn.lsj) to let me know of any bugs / suggestions for improvement! Happy spinning!
+9. RevoSniper saves your session cookies so that you are automatically logged in on subsequent runs, making RevoSniper even faster. If you wish to reserve classes for another account, simply delete the `cookies.json` file then update `credentials.txt`. `cookies.json` will be recreated automatically when you run RevoSniper again.
+
+10. Feel free to connect with me on Twitter (@shawnlsj) or Instagram (@shawn.lsj) to let me know of any bugs / suggestions for improvement! Happy spinning!
 
 ## Authors
 

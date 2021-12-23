@@ -6,11 +6,28 @@ const puppeteer = require('puppeteer');
 const lineReader = require('line-reader');
 const { program } = require('commander');
 const schedule = require('node-schedule');
+const fs = require('fs');
+const cookiesFilePath = 'cookies.json';
 
 const url = "https://revolution.com.sg/reserve#/account"
 
+var signedIn = false;
+
 async function initBrowser(browser) {
     const page = await browser.newPage();
+    // check if previous session exists, if it does, load cookies before page navigation
+    const prevSess = fs.existsSync(cookiesFilePath);
+    if (prevSess) {
+        const cookiesString = fs.readFileSync(cookiesFilePath);
+        const parsedCookies = JSON.parse(cookiesString);
+        if (parsedCookies.length !== 0) {
+            for (let cookie of parsedCookies) {
+                await page.setCookie(cookie);
+            }
+            console.log("Loaded session in browser, user is logged in");
+            signedIn = true;
+        }
+    }
     await page.goto(url, { waitUntil: 'networkidle2' });
     const title = await page.title();
     console.log("Loaded page: " + title);
@@ -47,6 +64,15 @@ async function userLogin(page) {
         await frame.type('#password', password);
         await page.waitForTimeout(1000);
         page.keyboard.press('Enter');
+        // Save session so we do not have to login again next time
+        const cookiesObject = await page.cookies();
+        fs.writeFile(cookiesFilePath, JSON.stringify(cookiesObject), function(err) {
+            if (err) {
+                console.log("Unable to save cookies: ", err);
+            } else {
+                console.log("Cookies saved successfully!")
+            }
+        }) 
     } catch (err) {
         throw err;
     }
@@ -177,7 +203,9 @@ async function reserve(options, diffDays) {
     const browser = await puppeteer.launch({ headless: false, handleSIGINT: true }); // for testing
     try {
         const page = await initBrowser(browser);
-        await userLogin(page);
+        if (!signedIn) {
+            await userLogin(page);
+        }
         await page.waitForNavigation({ waitUntil: 'networkidle2' });
         await reserveClass(page, options, diffDays);
     } catch (err) {
